@@ -1,0 +1,37 @@
+name: Security rule / coverage request
+description: Propose a new language, framework, vulnerability pattern, or review rule
+title: "[Rule] "
+labels: ["enhancement", "security-rule"]
+body:
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      placeholder: e.g. Go net/http, Spring Security, Kubernetes RBAC
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Security risk
+      description: What risk should the rule detect or prevent?
+    validations:
+      required: true
+  - type: textarea
+    id: vulnerable
+    attributes:
+      label: Vulnerable pattern
+      description: Describe a minimal pattern and the conditions required for it to be dangerous.
+    validations:
+      required: true
+  - type: textarea
+    id: safe
+    attributes:
+      label: Safer pattern / remediation
+    validations:
+      required: true
+  - type: textarea
+    id: falsepositives
+    attributes:
+      label: Likely false positives
+      description: When should this not be treated as a vulnerability?

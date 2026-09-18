@@ -1,0 +1,30 @@
+name: Bug report
+description: Report incorrect project or skill behavior
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Skill version, host environment, language/framework, and relevant non-sensitive details.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I have removed secrets, credentials, personal data, and sensitive production identifiers.
+          required: true

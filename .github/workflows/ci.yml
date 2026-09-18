@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Validate repository structure
+        run: python tests/test_structure.py
+
+      - name: Validate shell syntax
+        shell: bash
+        run: |
+          bash -n skill/secure-coding-review/scripts/security-scan.sh
+          bash -n scripts/install-skill.sh
+          bash -n scripts/package-skill.sh
+
+  powershell-syntax:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Validate PowerShell syntax
+        shell: pwsh
+        run: |
+          ./tests/Test-PowerShellSyntax.ps1

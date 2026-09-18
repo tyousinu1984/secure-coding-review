@@ -1,0 +1,23 @@
+name: False positive
+description: Report a rule or instruction that overstates a security issue
+title: "[False positive] "
+labels: ["false-positive"]
+body:
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding
+      description: Describe the finding without including sensitive source code.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it is a false positive
+      description: Explain the control, data-flow constraint, or environmental condition that prevents exploitation.
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested rule improvement
