@@ -1,5 +1,7 @@
 # Secure Coding Review Skill
 
+[English](README.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md)
+
 An open-source security guardrail for AI-assisted software development.
 
 `secure-coding-review` helps an AI coding agent reason about security **before**, **during**, and **after** a code change. It combines secure-coding rules, diff review, targeted security tests, and deterministic scanner output into an evidence-based **Security Gate**.
