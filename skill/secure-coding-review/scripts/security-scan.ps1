@@ -4,6 +4,8 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
+$ScriptDir = Split-Path -Parent $PSCommandPath
+$SecretConfig = Join-Path $ScriptDir "..\configs\trivy-secret.yaml"
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 
 Write-Host "[secure-coding-review] target: $Target"
@@ -13,7 +15,7 @@ $ran = $false
 
 if (Get-Command semgrep -ErrorAction SilentlyContinue) {
     Write-Host "[+] Running Semgrep"
-    if ((Test-Path ".semgrep.yml") -or (Test-Path ".semgrep.yaml")) {
+    if ((Test-Path (Join-Path $Target ".semgrep.yml")) -or (Test-Path (Join-Path $Target ".semgrep.yaml"))) {
         semgrep scan --json $Target | Out-File -Encoding utf8 "$OutDir/semgrep.json"
     } else {
         semgrep scan --config auto --json $Target | Out-File -Encoding utf8 "$OutDir/semgrep.json"
@@ -25,7 +27,13 @@ if (Get-Command semgrep -ErrorAction SilentlyContinue) {
 
 if (Get-Command trivy -ErrorAction SilentlyContinue) {
     Write-Host "[+] Running Trivy filesystem scan (vuln, secret, misconfig)"
-    trivy fs --scanners vuln,secret,misconfig --format json --output "$OutDir/trivy.json" $Target
+    $TrivyArgs = @("fs", "--scanners", "vuln,secret,misconfig", "--format", "json", "--output", "$OutDir/trivy.json")
+    if (Test-Path $SecretConfig) {
+        Write-Host "[+] Using project secret rules: $SecretConfig"
+        $TrivyArgs += @("--secret-config", $SecretConfig)
+    }
+    $TrivyArgs += $Target
+    trivy @TrivyArgs
     $ran = $true
 } else {
     Write-Host "[-] Trivy not installed"

@@ -137,7 +137,11 @@ Current references cover:
 - Java / Kotlin;
 - Python;
 - JavaScript / TypeScript;
+- Go;
 - AWS / IaC;
+- Docker / Kubernetes;
+- OAuth / OIDC / JWT;
+- database security (SQL/NoSQL);
 - AI-generated-code-specific risks;
 - common vulnerability/data-flow patterns.
 

@@ -2,6 +2,18 @@
 
 All notable project changes should be recorded here.
 
+## [0.4.0] - 2026-09-21
+
+### Added
+- Go security reference.
+- Docker/Kubernetes security reference.
+- OAuth/OIDC/JWT security reference.
+- Database security reference (SQL/NoSQL).
+
+### Fixed
+- `security-scan.sh`/`security-scan.ps1` now detect a Semgrep config relative to the scan `TARGET` instead of the current working directory.
+- `security-scan.sh`/`security-scan.ps1` now pass `configs/trivy-secret.yaml` to Trivy via `--secret-config` when present, so project-specific secret rules take effect.
+
 ## [0.3.0] - 2026-09-16
 
 ### Added

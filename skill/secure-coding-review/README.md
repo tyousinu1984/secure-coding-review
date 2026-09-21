@@ -18,7 +18,11 @@ secure-coding-review/
 │   ├── java-kotlin.md
 │   ├── python.md
 │   ├── javascript-typescript.md
+│   ├── go.md
 │   ├── aws-security.md
+│   ├── docker-kubernetes.md
+│   ├── oauth-jwt.md
+│   ├── database-security.md
 │   └── security-gate.md
 ├── scripts/
 │   ├── security-scan.sh
@@ -65,10 +69,8 @@ Missing tools are reported rather than silently treated as a successful scan.
 
 ## Suggested future modules
 
-- `references/go.md`
-- `references/docker-kubernetes.md`
-- `references/oauth-jwt.md`
-- `references/database-security.md`
+- `references/file-upload.md`
+- `references/cicd-supply-chain.md`
 - `references/codeql.md`
 - `references/semgrep.md`
 - `references/incident-response.md`

@@ -145,7 +145,11 @@ Scanner Output と実際の Code Diff は、検証可能な状態で保持すべ
 - Java / Kotlin
 - Python
 - JavaScript / TypeScript
+- Go
 - AWS / IaC
+- Docker / Kubernetes
+- OAuth / OIDC / JWT
+- データベースセキュリティ（SQL/NoSQL）
 - AI 生成コード固有のリスク
 - 一般的な脆弱性／データフローパターン
 

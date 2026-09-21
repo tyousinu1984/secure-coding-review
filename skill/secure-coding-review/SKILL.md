@@ -47,7 +47,11 @@ Also load the relevant language/platform reference:
 - Java/Kotlin: `references/java-kotlin.md`
 - Python: `references/python.md`
 - JavaScript/TypeScript: `references/javascript-typescript.md`
+- Go: `references/go.md`
 - AWS/IaC: `references/aws-security.md`
+- Docker/Kubernetes: `references/docker-kubernetes.md`
+- OAuth/OIDC/JWT: `references/oauth-jwt.md`
+- Database (SQL/NoSQL): `references/database-security.md`
 
 ## 2. Establish security invariants
 

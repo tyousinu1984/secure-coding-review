@@ -145,7 +145,11 @@ Skill 必須區分：
 - Java / Kotlin；
 - Python；
 - JavaScript / TypeScript；
+- Go；
 - AWS / IaC；
+- Docker / Kubernetes；
+- OAuth / OIDC / JWT；
+- 資料庫安全（SQL/NoSQL）；
 - AI 生成程式碼特有風險；
 - 常見漏洞與資料流模式。
 

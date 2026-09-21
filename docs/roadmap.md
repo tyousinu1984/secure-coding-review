@@ -17,11 +17,13 @@ The roadmap is directional and may change based on contributions.
 
 ## v0.4 — Coverage expansion
 
-Planned:
+Included:
 - Go security reference;
 - Docker/Kubernetes reference;
 - OAuth/OIDC/JWT deep-dive;
-- database security reference;
+- database security reference.
+
+Planned:
 - file-upload/storage reference;
 - CI/CD supply-chain reference.
 

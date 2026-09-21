@@ -4,6 +4,9 @@ set -uo pipefail
 TARGET="${1:-.}"
 OUT_DIR="${2:-security-reports}"
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SECRET_CONFIG="$SCRIPT_DIR/../configs/trivy-secret.yaml"
+
 mkdir -p "$OUT_DIR"
 
 echo "[secure-coding-review] target: $TARGET"
@@ -14,7 +17,7 @@ ran=0
 if command -v semgrep >/dev/null 2>&1; then
   echo "[+] Running Semgrep"
   # Use the project's configured rules when present. Otherwise use Semgrep's auto config.
-  if [ -f ".semgrep.yml" ] || [ -f ".semgrep.yaml" ]; then
+  if [ -f "$TARGET/.semgrep.yml" ] || [ -f "$TARGET/.semgrep.yaml" ]; then
     semgrep scan --json "$TARGET" > "$OUT_DIR/semgrep.json" || true
   else
     semgrep scan --config auto --json "$TARGET" > "$OUT_DIR/semgrep.json" || true
@@ -26,11 +29,12 @@ fi
 
 if command -v trivy >/dev/null 2>&1; then
   echo "[+] Running Trivy filesystem scan (vuln, secret, misconfig)"
-  trivy fs \
-    --scanners vuln,secret,misconfig \
-    --format json \
-    --output "$OUT_DIR/trivy.json" \
-    "$TARGET" || true
+  trivy_args=(fs --scanners vuln,secret,misconfig --format json --output "$OUT_DIR/trivy.json")
+  if [ -f "$SECRET_CONFIG" ]; then
+    echo "[+] Using project secret rules: $SECRET_CONFIG"
+    trivy_args+=(--secret-config "$SECRET_CONFIG")
+  fi
+  trivy "${trivy_args[@]}" "$TARGET" || true
   ran=1
 else
   echo "[-] Trivy not installed"
